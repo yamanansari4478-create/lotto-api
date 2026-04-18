@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+import os
 
 app = Flask(__name__)
 
@@ -13,7 +14,4 @@ def lotto():
         "result": ["12", "34", "56"],
         "prediction": ["11", "22", "33"]
     }
-    return jsonify(data)
-
-if __name__ == "__main__":
-    app.run()
+    return
