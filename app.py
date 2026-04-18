@@ -1,5 +1,7 @@
 from flask import Flask, jsonify
 import os
+import random
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -9,13 +11,17 @@ def home():
 
 @app.route("/lotto")
 def lotto():
+    numbers = [str(random.randint(10, 99)) for _ in range(3)]
+    prediction = [str(random.randint(10, 99)) for _ in range(3)]
+
     data = {
-        "date": "2026-04-19",
-        "result": ["12", "34", "56"],
-        "prediction": ["11", "22", "33"]
+        "date": datetime.now().strftime("%Y-%m-%d"),
+        "result": numbers,
+        "prediction": prediction
     }
+
     return jsonify(data)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port) 
+    app.run(host="0.0.0.0", port=port)
